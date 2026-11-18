@@ -11,7 +11,9 @@ This project develops a machine learning-based Credit Risk Assessment System tha
 
 ## Live Demo
  
-- **Web Application:** [(https://credit-risk-assesment-using-shap-w08f.onrender.com)]((https://credit-risk-assesment-using-shap-w08f.onrender.com))
+
+**Live Web Application:** https://credit-risk-assesment-using-shap-w08f.onrender.com
+
 
 ## Key Features
 
