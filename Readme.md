@@ -10,8 +10,7 @@ This project develops a machine learning-based Credit Risk Assessment System tha
 
 
 ## Live Demo
- 
-
+[CREDIT RISK ASSESMENT](https://eivsyyaxq5dgdunl9yxw7h.streamlit.app/)
 
 
 
@@ -88,18 +87,7 @@ The project uses a credit risk dataset containing borrower information and loan 
 
 The target represents whether an applicant has defaulted on a loan.
 
-## Model Performance
 
-The saved model evaluation report contains the following test-set results:
-
-| Metric | Logistic Regression | Calibrated XGBoost |
-|---|---:|---:|
-| Accuracy | 81.93% | 93.88% |
-| Precision | 55.80% | 96.65% |
-| Recall | 78.71% | 74.23% |
-| F1-Score | 65.31% | 83.97% |
-| ROC-AUC | 87.51% | 95.25% |
-| PR-AUC | 72.47% | 91.00% |
 
 **Optimized Decision Threshold:** `0.6952`
 
@@ -203,33 +191,7 @@ The endpoint accepts applicant information and returns the predicted default pro
 
 Interactive API documentation is available at `/docs` when the application is running.
 
-## Project Structure
 
-```text
-Credit-Risk-Assessment-using-SHAP/
-│
-├── static/                    # Frontend application files
-│
-├── Credit_risk.ipynb          # EDA, model training and analysis
-│
-├── credit_risk_dataset.csv    # Credit risk dataset
-│
-├── credit_risk_model.pkl      # Trained ML model
-│
-├── best_threshold.pkl         # Optimized decision threshold
-│
-├── model_report.json          # Model evaluation results
-│
-├── main.py                    # FastAPI application
-│
-├── requirements.txt           # Project dependencies
-│
-├── runtime.txt                # Python runtime configuration
-│
-├── render.yaml                # Render deployment configuration
-│
-└── README.md
-```
 
 ## Installation and Setup
 
