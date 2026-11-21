@@ -1,0 +1,10 @@
+# API only (used by Render service "credit-risk-api")
+# Pin each line to your notebook versions, e.g. scikit-learn==1.5.2
+fastapi
+uvicorn
+pydantic
+pandas
+numpy
+scikit-learn
+xgboost
+joblib

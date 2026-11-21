@@ -1,16 +1,9 @@
-services:
-  - type: web
-    name: credit-risk-api
-    runtime: python
-    buildCommand: pip install -r requirements-api.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.9        # use your venv's exact version
 
+services:
   - type: web
     name: credit-risk-dashboard
     runtime: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
     healthCheckPath: /_stcore/health
