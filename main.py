@@ -1,12 +1,16 @@
-import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Literal
 
 import joblib
 import pandas as pd
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, model_validator
+
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
 
 ml_model = {}
 
@@ -14,8 +18,8 @@ ml_model = {}
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Load once at startup, not on every request
-    ml_model["model"] = joblib.load("credit_risk_model.pkl")
-    ml_model["threshold"] = float(joblib.load("best_threshold.pkl"))
+    ml_model["model"] = joblib.load(BASE_DIR / "credit_risk_model.pkl")
+    ml_model["threshold"] = float(joblib.load(BASE_DIR / "best_threshold.pkl"))
     yield
     ml_model.clear()
 
@@ -75,6 +79,10 @@ def predict(data: LoanApplication):
     }
 
 
-# Mount the frontend last, and only if the folder exists
-if os.path.isdir("static"):
-    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+# Mount the frontend last. If the static folder is missing, "/" opens the API docs instead of a 404.
+if STATIC_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
+else:
+    @app.get("/", include_in_schema=False)
+    def root():
+        return RedirectResponse(url="/docs")
